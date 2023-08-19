@@ -51,7 +51,7 @@ select * from delegacia;
 -- DELETE INSERT DELEGACIA
 delete from delegacia where del_cd_id = 5;
 
--- CRIAR SEQUENCE PARA DELEGACIA
+-- CRIAR SEQUENCE PARA DENUNCIA
 create sequence den_id_seq
 start with 1
 increment by 1;
@@ -110,3 +110,17 @@ from
 	denuncia den
 left join delegacia del on
 	del.del_cd_id = den.fk_del_cd_id;
+
+-- CRIAR VIEW DENUNCIA_LIST
+create view denuncia_list as
+select
+	den_tx_denunciante,
+	den_tx_motivo,
+	del.del_tx_nome
+from
+	denuncia den
+inner join delegacia del on
+	del.del_cd_id = den.fk_del_cd_id;
+	
+-- SELECT DENUNCIA_LIST
+select * from denuncia_list;
