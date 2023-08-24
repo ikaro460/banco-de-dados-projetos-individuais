@@ -38,9 +38,12 @@ increment by 1;
 -- DELETE SEQUENCE
 drop sequence del_id_seq;
 
+-- SELECT SEQUENCE NEXTVAL
+select nextval('delegacia_del_cd_id_seq'); 
+
 -- INSERT DELEGACIA
-insert into delegacia (del_cd_id, del_tx_nome, del_tx_end, del_tx_tel)
-values (nextval('del_id_seq'), 'DPM 13', 'Rua Barão do Rio Branco', '24 22492541');
+insert into delegacia (del_tx_nome, del_tx_end, del_tx_tel)
+values ('DPM 14', 'Rua Barão do Rio Branco', '24 22492541');
 
 -- ATUALIZAR / CORRIGIR REGISTROS
 update delegacia set del_tx_nome = 'DPM 18', del_tx_end = 'Rua Lavradio', del_tx_tel = '24 22526894' where del_cd_id = 2
@@ -49,7 +52,7 @@ update delegacia set del_tx_nome = 'DPM 18', del_tx_end = 'Rua Lavradio', del_tx
 select * from delegacia;
 
 -- DELETE INSERT DELEGACIA
-delete from delegacia where del_cd_id = 5;
+delete from delegacia where del_cd_id = 1;
 
 -- CRIAR SEQUENCE PARA DENUNCIA
 create sequence den_id_seq
@@ -124,3 +127,10 @@ inner join delegacia del on
 	
 -- SELECT DENUNCIA_LIST
 select * from denuncia_list;
+
+-- CRIAR VIEW DENUNCIA_LIST
+create view denuncia_list2 as 
+select del_tx_nome from delegacia;
+
+select * from denuncia_list2;
+
